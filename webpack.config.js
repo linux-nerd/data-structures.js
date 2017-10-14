@@ -27,8 +27,11 @@ var config = {
     loaders: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel',
-        exclude: /(node_modules|bower_components)/
+        loader: 'babel-loader',
+        exclude: /(node_modules|bower_components)/,
+        query: {
+          presets: ['es2015']
+        }
       },
       {
         test: /(\.jsx|\.js)$/,

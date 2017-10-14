@@ -13,9 +13,9 @@
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-core": "6.1.18",
+    "babel-core": "^6.1.18",
     "babel-eslint": "8.0.1",
-    "babel-loader": "6.1.0",
+    "babel-loader": "^6.1.0",
     "babel-plugin-add-module-exports": "0.1.2",
     "babel-preset-latest": "^6.24.1",
     "eslint": "1.7.2",

@@ -1,4 +1,4 @@
-var ds = require('./lib/data-structures.js');
+var ds = require('../lib/data-structures.js');
 var BST = ds.BST;
 
 var bst = new BST;
