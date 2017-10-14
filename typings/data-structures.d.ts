@@ -2,7 +2,7 @@ declare namespace DataStructures {
   interface BST {
     insert(val: string | number): void;
     lookup(val: string | number): { hasValue: boolean, currentNode: BST, parentNode: BST };
-    print(type: string): void;
+    traverse(type: string): Array<number | string> | Error;
     delete(val: string | number): Error | void;
   }
 

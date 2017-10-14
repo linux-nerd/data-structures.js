@@ -27,9 +27,19 @@ export class BSTNode {
   set right(right) { this._right = right; }
 }
 
+const inOrderTraversal = Symbol('inorder');
+const preOrderTraversal = Symbol('preorder');
+const postOrderTraversal = Symbol('postorder');
+const length = Symbol('length');
+
 export class BST {
   constructor() {
     this.root = null;
+    this[length] = 0;
+  }
+
+  get len() {
+    return this[length];
   }
 
   /**
@@ -47,10 +57,12 @@ export class BST {
     const recurseBST = (node = this.root) => {
       if (node.key > val && !node.left) {
         node.left = bstNode;
+        this[length]++;
       } else if (node.key > val) {
         recurseBST(node.left);
       } else if (node.key < val && !node.right) {
         node.right = bstNode;
+        this[length]++;
       } else if (node.key < val) {
         recurseBST(node.right);
       }
@@ -59,6 +71,7 @@ export class BST {
     if (!this.root) {
       // if the root is null then assign the created node to the root.
       this.root = bstNode;
+      this[length]++;
     } else {
       recurseBST();
     }
@@ -76,6 +89,7 @@ export class BST {
         if (!findNode.currentNode.left && !findNode.currentNode.right) {
           const direction = findNode.parentNode.key > val ? 'left' : 'right';
           findNode.parentNode[direction] = null;
+          this[length]--;
         }
         // case 2
         // when node has just 1 child
@@ -84,6 +98,7 @@ export class BST {
           const parentToCurNodeDir = findNode.parentNode.key > val ? 'left' : 'right';
           const curNodeToChildDir = findNode.currentNode.left ? 'left' : 'right';
           findNode.parentNode[parentToCurNodeDir] = findNode.currentNode[curNodeToChildDir];
+          this[length]--;
         }
         // case 3
         // when node has both left and right children
@@ -106,7 +121,7 @@ export class BST {
    */
   lookup(val) {
     let response = { hasVal: false, currentNode: null, parentNode: null };
-    const lookRecursively = (node = this.root, parent) => {
+    const lookRecursively = (node = this.root, parent = null) => {
       if (node.key === val) {
         response.hasVal = true;
         response.currentNode = node;
@@ -124,18 +139,37 @@ export class BST {
 
   /**
    * Print the values of the BST in specific order
-   * @param {string} type - value of type can be inOrder, breadthFirst, depthFirst
+   * @param {string} type - value of type can be inOrder, preOrder, postOrder
    */
-  print(type) {
+  traverse(type) {
+    let retVal;
     switch (type) {
       case 'inOrder':
+        retVal = this[inOrderTraversal]();
         break;
-      case 'breadthFirst':
+      case 'preOrder':
+        retVal = this[preOrderTraversal]();
         break;
-      case 'depthFirst':
+      case 'postOrder':
+        retVal = this[postOrderTraversal]();
         break;
       default:
+        retVal = new Error('Type should be one of inOrder, preOrder or postOrder');
         break;
     }
+
+    return retVal;
+  }
+
+  [inOrderTraversal]() {
+
+  }
+
+  [preOrderTraversal]() {
+
+  }
+
+  [postOrderTraversal]() {
+
   }
 }
