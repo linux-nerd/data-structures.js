@@ -4,6 +4,7 @@ declare namespace DataStructures {
     lookup(val: string | number): { hasValue: boolean, currentNode: BST, parentNode: BST };
     traverse(type: string): Array<number | string> | Error;
     delete(val: string | number): Error | void;
+    findMin(subtree: BST): { subtree: BST, parent; BST };
     len(): number;
   }
 

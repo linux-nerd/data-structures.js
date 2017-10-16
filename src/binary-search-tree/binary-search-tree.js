@@ -27,11 +27,21 @@ export class BSTNode {
   set right(right) { this._right = right; }
 }
 
+/**
+ * Private methods name
+ */
 const inOrderTraversal = Symbol('inorder');
 const preOrderTraversal = Symbol('preorder');
 const postOrderTraversal = Symbol('postorder');
+
+/**
+ * Private properties name
+ */
 const length = Symbol('length');
 
+/**
+ * Binary Search Tree
+ */
 export class BST {
   constructor() {
     this.root = null;
@@ -106,12 +116,30 @@ export class BST {
         // Replace the key to be deleted with the min value.
         // Then delete the min val from the right subtree.
         else if (findNode.currentNode.left && findNode.currentNode.right) {
-
+          // find successor
+          const successor = this.findMin(findNode.currentNode.right);
+          findNode.currentNode.key = successor.subtree.key;
+          successor.parent.left = null;
+          this[length]--;
         }
       } else {
         return new Error('Node not found.');
       }
     }
+  }
+
+  /**
+   * Find minimum node of the given subtree. If subtree is not passed then
+   * @param {BST} subtree
+   * @returns {BST, BST} returns min node and its parent
+   */
+  findMin(subtree = this.root) {
+    let parent;
+    while (subtree.left) {
+      parent = subtree;
+      subtree = subtree.left;
+    }
+    return { subtree, parent };
   }
 
   /**
@@ -161,15 +189,55 @@ export class BST {
     return retVal;
   }
 
-  [inOrderTraversal]() {
+  /**
+   * Inorder traversal - Left, Root, Right
+   * Always returns a sorted array
+   */
+  [inOrderTraversal](subtree = this.root) {
+    const traversalList = [];
+    const recurseTraversal = (node) => {
+      if (node) {
+        recurseTraversal(node.left);
+        traversalList.push(node.key);
+        recurseTraversal(node.right);
+      }
+    };
 
+    recurseTraversal(subtree);
+    return traversalList;
   }
 
-  [preOrderTraversal]() {
+  /**
+   * Preorder traversal - Root, Left, Right
+   */
+  [preOrderTraversal](subtree = this.root) {
+    const traversalList = [];
+    const recurseTraversal = (node) => {
+      if (node) {
+        traversalList.push(node.key);
+        recurseTraversal(node.left);
+        recurseTraversal(node.right);
+      }
+    };
 
+    recurseTraversal(subtree);
+    return traversalList;
   }
 
-  [postOrderTraversal]() {
+  /**
+   * Postorder traversal - Left, Right, Root
+   */
+  [postOrderTraversal](subtree = this.root) {
+    const traversalList = [];
+    const recurseTraversal = (node) => {
+      if (node) {
+        recurseTraversal(node.left);
+        recurseTraversal(node.right);
+        traversalList.push(node.key);
+      }
+    };
 
+    recurseTraversal(subtree);
+    return traversalList;
   }
 }

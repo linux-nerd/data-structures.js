@@ -77,5 +77,83 @@ describe('Binary Search Tree', () => {
       bst.insert(49);
     });
 
+    it('should have 11 nodes in the bst', () => {
+      expect(bst.len).toBe(11);
+    });
+
+    it('should delete leaf with value 5', () => {
+      expect(bst.len).toBe(11);
+
+      const lookUpFor5 = bst.lookup(5);
+      expect(lookUpFor5.hasVal).toBeTruthy();
+      expect(lookUpFor5.parentNode.right).toBeDefined();
+
+      bst.delete(5);
+      expect(bst.len).toBe(10);
+      expect(bst.lookup(5).hasVal).toBeFalsy();
+      expect(lookUpFor5.parentNode.right).toBe(null);
+    });
+
+    it('should delete node 8, with one child', () => {
+      expect(bst.len).toBe(11);
+
+      const lookUpFor8 = bst.lookup(8);
+      expect(lookUpFor8.hasVal).toBeTruthy();
+      expect(lookUpFor8.parentNode.right).toBeDefined();
+      expect(lookUpFor8.currentNode.right).toBeDefined();
+
+      bst.delete(8);
+      expect(bst.len).toBe(10);
+      expect(bst.lookup(8).hasVal).toBeFalsy();
+      expect(lookUpFor8.parentNode.right.key).toBe(10);
+    });
+
+    it('should delete node 19, with two children', () => {
+      expect(bst.len).toBe(11);
+
+      const lookupFor19 = bst.lookup(19);
+
+      expect(lookupFor19.hasVal).toBeTruthy();
+      expect(lookupFor19.parentNode.right).toBeDefined();
+      expect(lookupFor19.currentNode.right).toBeDefined();
+      expect(lookupFor19.currentNode.left).toBeDefined();
+
+      const successor = bst.findMin(lookupFor19.currentNode.right);
+      expect(successor.subtree.key).toBe(31);
+
+      const dir = lookupFor19.currentNode.key > lookupFor19.parentNode.key ? 'right' : 'left';
+
+      bst.delete(19);
+      expect(bst.len).toBe(10);
+      expect(bst.lookup(19).hasVal).toBeFalsy();
+      expect(lookupFor19.parentNode[dir].key).toBe(successor.subtree.key);
+    });
+  });
+
+  describe('Traversal Operation', () => {
+    beforeEach(() => {
+      bst.insert(11);
+      bst.insert(6);
+      bst.insert(8);
+      bst.insert(4);
+      bst.insert(5);
+      bst.insert(10);
+      bst.insert(19);
+      bst.insert(17);
+      bst.insert(43);
+      bst.insert(31);
+      bst.insert(49);
+    });
+    it('should return inorder list', () => {
+      expect(bst.traverse('inOrder')).toEqual([4, 5, 6, 8, 10, 11, 17, 19, 31, 43, 49]);
+    });
+
+    it('should return preorder list', () => {
+      expect(bst.traverse('preOrder')).toEqual([11, 6, 4, 5, 8, 10, 19, 17, 43, 31, 49]);
+    });
+
+    it('should return postorder list', () => {
+      expect(bst.traverse('postOrder')).toEqual([5, 4, 10, 8, 6, 17, 31, 49, 43, 19, 11]);
+    });
   });
 });
