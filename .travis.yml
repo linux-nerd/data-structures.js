@@ -31,4 +31,5 @@ install:
   - npm install
 script:
   - npm run test:travis
-  - npm run build
+  # Excluding build process as of now
+  #- npm run build
