@@ -5,10 +5,7 @@ var webpackConfig = require('./webpack.config.js');
 
 
 module.exports = function (config) {
-  //workaround for travis
-  if (process.env.TRAVIS) {
-    configuration.browsers = ['PhantomJS'];
-  }
+
   var configuration = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -74,5 +71,11 @@ module.exports = function (config) {
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false
   };
+
+  //workaround for travis
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['PhantomJS'];
+  }
+
   config.set(configuration);
-}
+};
