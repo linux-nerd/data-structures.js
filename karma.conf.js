@@ -2,8 +2,11 @@
 // Generated on Mon Oct 02 2017 21:15:08 GMT+0530 (India Standard Time)
 var webpackConfig = require('./webpack.config.js');
 
+
+
 module.exports = function (config) {
-  config.set({
+
+  var configuration = {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
@@ -16,6 +19,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'src/**/*.spec.js'
     ],
 
@@ -60,11 +64,18 @@ module.exports = function (config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['Chrome', 'PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false
-  })
-}
+  };
+
+  //workaround for travis
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['PhantomJS'];
+  }
+
+  config.set(configuration);
+};
