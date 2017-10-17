@@ -6,7 +6,8 @@
   "scripts": {
     "build": "SET WEBPACK_ENV=build && webpack",
     "dev": "SET WEBPACK_ENV=dev & webpack --progress --colors --watch",
-    "test": "SET WEBPACK_ENV=dev & karma start"
+    "test": "SET WEBPACK_ENV=dev & karma start",
+    "test:travis": "SET WEBPACK_ENV=dev & karma start --single-run"
   },
   "keywords": [],
   "author": "",
