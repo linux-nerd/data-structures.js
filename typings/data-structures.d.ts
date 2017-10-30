@@ -1,6 +1,6 @@
 declare namespace DataStructures {
   interface BST {
-    insert(val: string | number): void;
+    insert(val: string | number, details?: object): void;
     lookup(val: string | number): { hasValue: boolean, currentNode: BST, parentNode: BST };
     traverse(type: string): Array<number | string> | Error;
     delete(val: string | number): Error | void;
@@ -9,7 +9,7 @@ declare namespace DataStructures {
   }
 
   class BSTNode {
-    constructor(key: string | number, left?: BST, right?: BST);
+    constructor(key: string | number, details?: object, left?: BST, right?: BST);
     key(): number | string;
     key(val: number | string): void;
     left(): BST;

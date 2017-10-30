@@ -7,9 +7,10 @@
  * @return BSTNode
  */
 export class BSTNode {
-  constructor(key, left = null, right = null) {
+  constructor(key, details = null, left = null, right = null) {
     // the constructor creates the leaf node
     this._key = key;
+    this._details = details;
     this._left = left;
     this._right = right;
   }
@@ -17,6 +18,10 @@ export class BSTNode {
   /* Getter and Setter for key */
   get key() { return this._key; }
   set key(key) { this._key = key; }
+
+  /* Getter and Setter for key */
+  get details() { return this._details; }
+  set details(details) { this._details = details; }
 
   /* Getter and Setter for left sub tree */
   get left() { return this._left; }
@@ -56,9 +61,9 @@ export class BST {
    * Insert value in the BST
    * @param {*} val
    */
-  insert(val) {
+  insert(val, details = null) {
     // create a BST node
-    const bstNode = new BSTNode(val);
+    const bstNode = new BSTNode(val, details);
 
     /**
      * @name recurseBST
