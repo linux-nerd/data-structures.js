@@ -3,7 +3,7 @@ import { BST } from '../binary-search-tree/binary-search-tree';
 export class AdjacencyList {
   constructor(isDiGraph) {
     this.diGraph = isDiGraph;
-    this.edges = new Map();
+    this.vertices = new Map();
   }
 
   /**
@@ -12,8 +12,8 @@ export class AdjacencyList {
    * @param {string|number} node
    */
   addNode(node) {
-    if (!this.edges.get(node)) {
-      this.edges.set(node, new BST);
+    if (!this.vertices.get(node)) {
+      this.vertices.set(node, new BST);
     }
   }
 
@@ -22,13 +22,13 @@ export class AdjacencyList {
    * @param {string|number} node
    */
   removeNode(node) {
-    // Remove all the edges formed by this node
-    this.edges.forEach((val, key) => {
+    // Remove all the vertices formed by this node
+    this.vertices.forEach((val, key) => {
       this.removeEdge(key, node);
     });
 
     // finally remove the node
-    this.edges.delete(node);
+    this.vertices.delete(node);
   }
 
   /**
@@ -41,18 +41,18 @@ export class AdjacencyList {
    * @param {number} weight
    */
   addEdge(fromVertex, toVertex, weight) {
-    if (!this.edges.has(fromVertex)) {
+    if (!this.vertices.has(fromVertex)) {
       this.addNode(fromVertex);
     }
 
-    if (!this.edges.has(toVertex)) {
+    if (!this.vertices.has(toVertex)) {
       this.addNode(toVertex);
     }
 
-    this.edges.get(fromVertex).insert(toVertex, { weight });
+    this.vertices.get(fromVertex).insert(toVertex, { weight });
 
     if (!this.diGraph) {
-      this.edges.get(toVertex).insert(fromVertex, { weight });
+      this.vertices.get(toVertex).insert(fromVertex, { weight });
     }
   }
 
@@ -62,8 +62,8 @@ export class AdjacencyList {
    * @param {string|number} toVertex
    */
   removeEdge(fromVertex, toVertex) {
-    if (this.edges.has(fromVertex)) {
-      const deleteEdge = this.edges.get(fromVertex).delete(toVertex);
+    if (this.vertices.has(fromVertex)) {
+      const deleteEdge = this.vertices.get(fromVertex).delete(toVertex);
       if (deleteEdge && deleteEdge.constructor === Error) {
         return new Error(`No edge present between ${fromVertex} and ${toVertex}`);
       }
@@ -91,8 +91,8 @@ export class AdjacencyList {
    */
   getEdgeWeight(fromVertex, toVertex) {
     let weight;
-    if (this.edges.has(fromVertex)) {
-      const lookup = this.edges.get(fromVertex).lookup(toVertex);
+    if (this.vertices.has(fromVertex)) {
+      const lookup = this.vertices.get(fromVertex).lookup(toVertex);
       weight = lookup.hasVal ? lookup.currentNode.details.weight : void 0;
     }
     return weight ? weight : new Error(`Edge not found between ${fromVertex} and ${toVertex}`);
