@@ -4,12 +4,12 @@ sudo: false
 dist: trusty
 node_js:
   - "6.9.1"
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+# addons:
+#   apt:
+#     sources:
+#       - google-chrome
+#     packages:
+#       - google-chrome-stable
 #  firefox: "38.0"
   #apt:
     #sources:
@@ -33,3 +33,4 @@ script:
   - npm run test:travis
   # Excluding build process as of now
   #- npm run build
+after_success: 'npm run coveralls'
