@@ -102,8 +102,13 @@ export class BST {
         // when the node has no children or when its a leaf
         // then simply delete the node
         if (!findNode.currentNode.left && !findNode.currentNode.right) {
-          const direction = findNode.parentNode.key > val ? 'left' : 'right';
-          findNode.parentNode[direction] = null;
+          //check if the node is the root node
+          if (findNode.parentNode === null) {
+            this.root = null;
+          } else {
+            const direction = findNode.parentNode.key > val ? 'left' : 'right';
+            findNode.parentNode[direction] = null;
+          }
           this[length]--;
         }
         // case 2
@@ -155,14 +160,16 @@ export class BST {
   lookup(val) {
     let response = { hasVal: false, currentNode: null, parentNode: null };
     const lookRecursively = (node = this.root, parent = null) => {
-      if (node.key === val) {
-        response.hasVal = true;
-        response.currentNode = node;
-        response.parentNode = parent;
-      } else if (node.left && node.key > val) {
-        lookRecursively(node.left, node);
-      } else if (node.right && node.key < val) {
-        lookRecursively(node.right, node);
+      if (node) {
+        if (node.key === val) {
+          response.hasVal = true;
+          response.currentNode = node;
+          response.parentNode = parent;
+        } else if (node.left && node.key > val) {
+          lookRecursively(node.left, node);
+        } else if (node.right && node.key < val) {
+          lookRecursively(node.right, node);
+        }
       }
     }
 
