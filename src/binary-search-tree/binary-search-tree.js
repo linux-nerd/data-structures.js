@@ -7,9 +7,10 @@
  * @return BSTNode
  */
 export class BSTNode {
-  constructor(key, left = null, right = null) {
+  constructor(key, details = null, left = null, right = null) {
     // the constructor creates the leaf node
     this._key = key;
+    this._details = details;
     this._left = left;
     this._right = right;
   }
@@ -17,6 +18,10 @@ export class BSTNode {
   /* Getter and Setter for key */
   get key() { return this._key; }
   set key(key) { this._key = key; }
+
+  /* Getter and Setter for key */
+  get details() { return this._details; }
+  set details(details) { this._details = details; }
 
   /* Getter and Setter for left sub tree */
   get left() { return this._left; }
@@ -56,9 +61,9 @@ export class BST {
    * Insert value in the BST
    * @param {*} val
    */
-  insert(val) {
+  insert(val, details = null) {
     // create a BST node
-    const bstNode = new BSTNode(val);
+    const bstNode = new BSTNode(val, details);
 
     /**
      * @name recurseBST
@@ -97,8 +102,13 @@ export class BST {
         // when the node has no children or when its a leaf
         // then simply delete the node
         if (!findNode.currentNode.left && !findNode.currentNode.right) {
-          const direction = findNode.parentNode.key > val ? 'left' : 'right';
-          findNode.parentNode[direction] = null;
+          //check if the node is the root node
+          if (findNode.parentNode === null) {
+            this.root = null;
+          } else {
+            const direction = findNode.parentNode.key > val ? 'left' : 'right';
+            findNode.parentNode[direction] = null;
+          }
           this[length]--;
         }
         // case 2
@@ -150,14 +160,16 @@ export class BST {
   lookup(val) {
     let response = { hasVal: false, currentNode: null, parentNode: null };
     const lookRecursively = (node = this.root, parent = null) => {
-      if (node.key === val) {
-        response.hasVal = true;
-        response.currentNode = node;
-        response.parentNode = parent;
-      } else if (node.left && node.key > val) {
-        lookRecursively(node.left, node);
-      } else if (node.right && node.key < val) {
-        lookRecursively(node.right, node);
+      if (node) {
+        if (node.key === val) {
+          response.hasVal = true;
+          response.currentNode = node;
+          response.parentNode = parent;
+        } else if (node.left && node.key > val) {
+          lookRecursively(node.left, node);
+        } else if (node.right && node.key < val) {
+          lookRecursively(node.right, node);
+        }
       }
     }
 
