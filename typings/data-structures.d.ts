@@ -17,4 +17,15 @@ declare namespace DataStructures {
     right(): BST;
     right(node: BST): void;
   }
+
+  class AdjacencyList {
+    constructor(isDiGraph: boolean);
+    diGraph: boolean;
+    edges: Map<string | number, BST>;
+    addNode(node: string | number): void;
+    removeNode(node: string | number): void;
+    addEdge(fromVertex: string | number, toVertex: string | number, weight: number): void;
+    removeEdge(fromVertex: string | number, toVertex: string | number): void | Error;
+    getEdgeWeight(fromVertex: string | number, toVertex: string | number): number | Error;
+  }
 }
