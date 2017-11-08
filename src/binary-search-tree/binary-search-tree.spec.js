@@ -155,5 +155,9 @@ describe('Binary Search Tree', () => {
     it('should return postorder list', () => {
       expect(bst.traverse('postOrder')).toEqual([5, 4, 10, 8, 6, 17, 31, 49, 43, 19, 11]);
     });
+
+    it('should return bfs list', () => {
+      expect(bst.traverse('levelOrder')).toEqual([11, 6, 19, 4, 8, 17, 43, 5, 10, 31, 49]);
+    });
   });
 });

@@ -1,3 +1,4 @@
+import { Queue } from '../queue/queue';
 /**
  * This creates a node
  * @name BSTNode
@@ -38,6 +39,7 @@ export class BSTNode {
 const inOrderTraversal = Symbol('inorder');
 const preOrderTraversal = Symbol('preorder');
 const postOrderTraversal = Symbol('postorder');
+const levelOrderTraversal = Symbol('levelorder');
 
 /**
  * Private properties name
@@ -179,7 +181,7 @@ export class BST {
 
   /**
    * Print the values of the BST in specific order
-   * @param {string} type - value of type can be inOrder, preOrder, postOrder
+   * @param {string} type - value of type can be inOrder, preOrder, postOrder, levelOrder
    */
   traverse(type) {
     let retVal;
@@ -192,6 +194,9 @@ export class BST {
         break;
       case 'postOrder':
         retVal = this[postOrderTraversal]();
+        break;
+      case 'levelOrder':
+        retVal = this[levelOrderTraversal]();
         break;
       default:
         retVal = new Error('Type should be one of inOrder, preOrder or postOrder');
@@ -251,5 +256,32 @@ export class BST {
 
     recurseTraversal(subtree);
     return traversalList;
+  }
+
+  /**
+   * Levelorder traversal - BFS
+   */
+  [levelOrderTraversal]() {
+    const bfsTraversalList = [];
+    const traversalQueue = new Queue;
+
+    if (this.root !== null) {
+      traversalQueue.enqueue(this.root);
+    }
+
+    while (!traversalQueue.isEmpty()) {
+      let presentNode = traversalQueue.top();
+      if (presentNode.left) {
+        traversalQueue.enqueue(presentNode.left);
+      }
+      if (presentNode.right) {
+        traversalQueue.enqueue(presentNode.right);
+      }
+      bfsTraversalList.push(presentNode.key);
+
+      traversalQueue.dequeue();
+    }
+
+    return bfsTraversalList;
   }
 }
