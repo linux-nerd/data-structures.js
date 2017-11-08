@@ -1,5 +1,5 @@
 declare namespace DataStructures {
-  interface BST {
+  class BST {
     insert(val: string | number, details?: object): void;
     lookup(val: string | number): { hasValue: boolean, currentNode: BST, parentNode: BST };
     traverse(type: string): Array<number | string> | Error;
