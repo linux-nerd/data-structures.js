@@ -28,4 +28,14 @@ declare namespace DataStructures {
     removeEdge(fromVertex: string | number, toVertex: string | number): void | Error;
     getEdgeWeight(fromVertex: string | number, toVertex: string | number): number | Error;
   }
+
+  class Queue {
+    queue(): Array<any>;
+    enqueue(o): void;
+    dequeue(): Error | void;
+    size(): number;
+    isEmpty(): void;
+    top(): any;
+    clear(): void;
+  }
 }
