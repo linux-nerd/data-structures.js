@@ -31,6 +31,7 @@ export class BSTNode {
   /* Getter and Setter for right sub tree */
   get right() { return this._right; }
   set right(right) { this._right = right; }
+
 }
 
 /**
@@ -177,6 +178,19 @@ export class BST {
 
     lookRecursively();
     return response;
+  }
+
+  /**
+   * Returns height of the Node
+   * @param {BST} node
+   * @return {number} height
+   */
+  height(node = this.root) {
+    if (node === null) {
+      return -1;
+    }
+
+    return Math.max(this.height(node.left), this.height(node.right)) + 1;
   }
 
   /**

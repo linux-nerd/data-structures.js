@@ -16,6 +16,31 @@ describe('Binary Search Tree', () => {
     expect(bst.len).toBe(0);
   });
 
+  describe('Height of the node', () => {
+    beforeEach(() => {
+      bst.insert(5);
+      bst.insert(6);
+      bst.insert(4);
+      bst.insert(2);
+    });
+
+    it('should have height of node 4 as 1', () => {
+      expect(bst.height(bst.lookup(4).currentNode)).toBe(1);
+    });
+
+    it('should have height of tree = 2', () => {
+      expect(bst.height()).toBe(2);
+    });
+
+    it('should have height 0 of leaf nodes', () => {
+      expect(bst.height(bst.lookup(6).currentNode)).toBe(0);
+    });
+
+    it('should have height 0 of leaf nodes', () => {
+      expect(bst.height(bst.lookup(2).currentNode)).toBe(0);
+    });
+  });
+
   describe('Insertion operation', () => {
     it('should insert values in the BST', () => {
       bst.insert(5);
