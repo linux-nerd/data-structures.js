@@ -34,8 +34,14 @@ declare namespace DataStructures {
     enqueue(o): void;
     dequeue(): Error | void;
     size(): number;
-    isEmpty(): void;
+    isEmpty(): boolean;
     top(): any;
     clear(): void;
+  }
+
+  class LinkedList {
+    head(): any;
+    size(): number;
+    isEmpty(): boolean;
   }
 }
