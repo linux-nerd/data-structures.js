@@ -11,23 +11,25 @@ There are neither a lot of resources on internet nor any book which guides and d
 
 # Getting hands dirty
 Clone the repo
-```git clone https://github.com/linux-nerd/data-structures.js.git```
+`git clone https://github.com/linux-nerd/data-structures.js.git`
 
 Install the dependencies
-```npm install```
+`npm install`
 
 Run dev build
-```npm run dev```
+`npm run dev`
 
 To execute unit test cases
-```npm test```
+`npm test`
 
 Trigger production build
-```npm run build```
+`npm run build`
 
 # List of Data Structures
 Data structures covered so far -
 - [Binary Search Tree](#binary-search-tree)
+- [Graph](#graph)
+- [Queue](#queue)
 
 # Contribution
 Your contribution is highly appreciated. You can contribute in several ways -
@@ -88,4 +90,77 @@ Delete elements from binary search tree
 ```js
 bst.delete(10);
 bst.delete(20);
+```
+
+# <a name="graph"></a> Graph
+Import Graph class and instantiate it and create an object of adjacency list implementation of Graph. To create a directed graph pass the string argument '**directed**'. If the Graph class is called without a parameter then by default its undirected graph.
+```js
+import { Graph } from 'data-structures.js/lib/data-structures';
+const graph = new Graph; // this will create an undirected Graph
+const graph = new Graph('directed'); // this will create a directed graph or diGraph
+
+const adjList = graph.createGraph('adjList'); // create Adjacency List implementation of graph
+```
+
+Add and remove a node to the graph
+```js
+// add a node
+adjList.addNode('A');
+adjList.addNode('B');
+
+// remove a node
+adjList.removeNode('A');
+adjList.removeNode('B');
+```
+
+Add and remove an edge between two nodes to the graph. iF a node is not added, then it first adds the node and then create an edge.
+```js
+// add an edge
+adjList.addEdge('A', 'B', 200); // it will add an edge between A and B of weight 200
+adjList.addEdge('B', 'C'); // it will first add node C and then create an edge b/w B and C
+
+// remove an edge
+adjList.removeEdge('A', 'B');
+adjList.removeEdge('B', 'C');
+```
+
+Find size of the graph.
+```js
+adjList.size // 3
+```
+
+Find weight of the edge in weighted graph
+```js
+adjList.getEdgeWeight('A', 'B');
+```
+
+# <a name="queue"></a> Queue
+
+Import Queue class and create a queue object.
+
+```js
+import { Queue } from 'data-structures.js/lib/data-structures';
+const queue = new Queue;
+```
+
+Add and remove elements to and from the created queue respectively
+```js
+// add elements to the queue
+queue.enqueue('A');
+queue.enqueue(123);
+
+// remove elements from the queue
+queue.dequeue();
+queue.dequeue();
+```
+
+Get size and top element in the queue
+```js
+queue.size() // 2
+queue.top() // A
+```
+
+Clear the entire queue at once
+```js
+queue.clear() // this will empty the queue
 ```
