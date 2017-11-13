@@ -27,7 +27,7 @@ Trigger production build
 
 # List of Data Structures
 Data structures covered so far -
-- [Binary Search Tree](https://github.com/linux-nerd/data-structures.js/wiki/Binary-Search-Tree)
+- [Binary Search Tree](#binary-search-tree)
 
 # Contribution
 Your contribution is highly appreciated. You can contribute in several ways -
@@ -51,3 +51,41 @@ and will be published in
 - bower
 
 
+# <a name="binary-search-tree"></a>Binary Search Tree
+Import BST class and instantiate it
+```js
+import { BST } from 'data-structures.js/lib/data-structures';
+const bst = new BST
+```
+
+Insert values in binary search Tree
+```js
+bst.insert(5);
+bst.insert(20);
+bst.insert(10);
+```
+Find size of the binary search tree
+```js
+bst.len() // 3
+```
+
+Find an item in the binary search tree
+```js
+bst.lookup(10) // returns an object with keys hasVal, currentNode and parentNode
+```
+
+Height of the binary search tree or a node
+```js
+bst.height() //gives height of the BST 1
+bst.height(bst.lookup(10).currentNode) // gives the height of the node - 0
+```
+
+Traverse the BST and return a List
+```js
+bst.traverse('inOrder') // traverse method expects a parameter - inOrder|preOrder|postOrder| levelOrder
+```
+Delete elements from binary search tree
+```js
+bst.delete(10);
+bst.delete(20);
+```

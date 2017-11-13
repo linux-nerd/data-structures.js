@@ -213,7 +213,7 @@ export class BST {
         retVal = this[levelOrderTraversal]();
         break;
       default:
-        retVal = new Error('Type should be one of inOrder, preOrder or postOrder');
+        retVal = new Error('Type should be one of inOrder, preOrder, postOrder or levelOrder');
         break;
     }
 
