@@ -44,7 +44,8 @@
     "es6",
     "queue",
     "graph",
-    "binary search tree"
+    "binary search tree",
+    "avl tree"
   ],
   "author": {
     "name": "Abhishek Prakash",
