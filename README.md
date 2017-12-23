@@ -20,13 +20,25 @@ Install the dependencies
 `npm install`
 
 Run dev build
+- For linux and darwin
 `npm run dev`
 
+- For windows
+`npm run dev:win32`
+
 To execute unit test cases
+- For linux and darwin
 `npm test`
 
+- For windows
+`npm test:win32`
+
 Trigger production build
+- For linux and darwin
 `npm run build`
+
+- For windows
+`npm run build:win32`
 
 # List of Data Structures
 Data structures covered so far -
