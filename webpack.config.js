@@ -41,8 +41,8 @@ var config = {
     ]
   },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
+    modules: [__dirname, 'src'],
+    extensions: ['.js']
   }
 };
 

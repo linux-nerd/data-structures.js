@@ -9,11 +9,16 @@
     "README.md"
   ],
   "scripts": {
-    "build": "SET WEBPACK_ENV=build & webpack",
-    "dev": "SET WEBPACK_ENV=dev & webpack",
-    "dev:watch": "SET WEBPACK_ENV=dev & webpack --progress --colors --watch",
-    "test": "SET WEBPACK_ENV=dev & karma start",
-    "test:travis": "SET WEBPACK_ENV=dev & karma start --single-run",
+    "build:win32": "SET WEBPACK_ENV=build & webpack",
+    "build": "WEBPACK_ENV=build & node_modules/.bin/webpack",
+    "dev:win32": "SET WEBPACK_ENV=dev & webpack",
+    "dev": "WEBPACK_ENV=dev & node_modules/.bin/webpack",
+    "dev:watch:win32": "SET WEBPACK_ENV=dev & webpack --progress --colors --watch",
+    "dev:watch": "WEBPACK_ENV=dev & node_modules/.bin/webpack --progress --colors --watch",
+    "test:win32": "SET WEBPACK_ENV=dev & karma start",
+    "test": "WEBPACK_ENV=dev & karma start",
+    "test:travis:win32": "SET WEBPACK_ENV=dev & karma start --single-run",
+    "test:travis": "WEBPACK_ENV=dev & karma start --single-run",
     "coveralls": "cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "prepublish": "npm build & npm run dev",
     "build&publish": "npm run prepublish & npm publish"
@@ -49,10 +54,10 @@
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.4",
-    "karma-webpack": "^2.0.4",
+    "karma-webpack": "^2.0.9",
     "phantomjs-prebuilt": "^2.1.15",
     "tslint": "^5.7.0",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack": "1.12.9"
+    "webpack": "^2.0.9"
   }
 }
