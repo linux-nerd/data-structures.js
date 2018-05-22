@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var libraryName = 'data-structures';
+var libraryName = 'ds';
 var plugins = [], outputFile;
 
 
@@ -41,8 +41,8 @@ var config = {
     ]
   },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js']
+    modules: [__dirname, 'src'],
+    extensions: ['.js']
   }
 };
 

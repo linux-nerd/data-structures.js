@@ -31,6 +31,7 @@ export class BSTNode {
   /* Getter and Setter for right sub tree */
   get right() { return this._right; }
   set right(right) { this._right = right; }
+
 }
 
 /**
@@ -180,6 +181,19 @@ export class BST {
   }
 
   /**
+   * Returns height of the Node
+   * @param {BST} node
+   * @return {number} height
+   */
+  height(node = this.root) {
+    if (node === null) {
+      return -1;
+    }
+
+    return Math.max(this.height(node.left), this.height(node.right)) + 1;
+  }
+
+  /**
    * Print the values of the BST in specific order
    * @param {string} type - value of type can be inOrder, preOrder, postOrder, levelOrder
    */
@@ -199,7 +213,7 @@ export class BST {
         retVal = this[levelOrderTraversal]();
         break;
       default:
-        retVal = new Error('Type should be one of inOrder, preOrder or postOrder');
+        retVal = new Error('Type should be one of inOrder, preOrder, postOrder or levelOrder');
         break;
     }
 
