@@ -2,11 +2,10 @@ var webpack = require('webpack');
 var path = require('path');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 var libraryName = 'ds';
-var plugins = [], outputFile;
-
+var plugins = [],
+  outputFile;
 
 if (process.env.WEBPACK_ENV && process.env.WEBPACK_ENV.trim() === 'build') {
-  console.log(process.env.WEBPACK_ENV);
   plugins.push(new UglifyJsPlugin({ minimize: true }));
   outputFile = libraryName + '.min.js';
 } else {
@@ -35,7 +34,7 @@ var config = {
       },
       {
         test: /(\.jsx|\.js)$/,
-        loader: "eslint-loader",
+        loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ]

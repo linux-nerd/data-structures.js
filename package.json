@@ -1,25 +1,25 @@
 {
   "name": "es6-data-structures",
   "version": "1.0.0-pre-alpha-4",
-  "description": "There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of populare data structures in javascript.",
+  "description":
+    "There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of populare data structures in javascript.",
   "main": "index.js",
-  "files": [
-    "lib",
-    "typings",
-    "README.md"
-  ],
+  "files": ["lib", "typings", "README.md"],
   "scripts": {
     "build:win32": "SET WEBPACK_ENV=build & webpack",
-    "build": "WEBPACK_ENV=build & node_modules/.bin/webpack",
+    "build": "export WEBPACK_ENV=build; node_modules/.bin/webpack",
     "dev:win32": "SET WEBPACK_ENV=dev & webpack",
-    "dev": "WEBPACK_ENV=dev & node_modules/.bin/webpack",
-    "dev:watch:win32": "SET WEBPACK_ENV=dev & webpack --progress --colors --watch",
-    "dev:watch": "WEBPACK_ENV=dev & node_modules/.bin/webpack --progress --colors --watch",
+    "dev": "export WEBPACK_ENV=dev; node_modules/.bin/webpack",
+    "dev:watch:win32":
+      "SET WEBPACK_ENV=dev & webpack --progress --colors --watch",
+    "dev:watch":
+      "export WEBPACK_ENV=dev; node_modules/.bin/webpack --progress --colors --watch",
     "test:win32": "SET WEBPACK_ENV=dev & karma start",
-    "test": "WEBPACK_ENV=dev & karma start",
+    "test": "export WEBPACK_ENV=dev; karma start",
     "test:travis:win32": "SET WEBPACK_ENV=dev & karma start --single-run",
-    "test:travis": "WEBPACK_ENV=dev & karma start --single-run",
-    "coveralls": "cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test:travis": "export WEBPACK_ENV=dev; karma start --single-run",
+    "coveralls":
+      "cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "prepublish": "npm build & npm run dev",
     "build&publish": "npm run prepublish & npm publish"
   },
