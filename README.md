@@ -45,6 +45,7 @@ Data structures covered so far -
 - [Binary Search Tree](#binary-search-tree)
 - [Graph](#graph)
 - [Queue](#queue)
+- [Linked List](#link-list)
 
 # Contribution
 Your contribution is highly appreciated. You can contribute in several ways -
@@ -195,4 +196,49 @@ Clear the entire queue at once
 
 ```js
 queue.clear() // this will empty the queue
+```
+
+# <a name="link-list"></a> Linked List
+
+Import LinkedList data structure and create a list object.
+
+```js
+import { LinkedList } from 'es6-data-structures/lib/ds';
+const list = new LinkedList;
+```
+
+Insert and Remove Items from the list
+
+```js
+// inserts item at the end of the list
+list.insert('firstVal');
+list.insert('SecondVal');
+
+list.insertAfter('Mid', 'firstVal');  // insert Mid after firstVal
+list.insertBefore('xyz', 'secondVal'); // insert xyz before secondVal
+
+list.remove('firstVal') // removes firstVal from the list.
+```
+
+Get size and search for an item and check if the list is empty
+
+```js
+list.size() // 3
+list.search('xyz') // true
+list.search('abc') // false
+list.isEmpty() // false
+```
+
+Iterate over list using for...of loop
+
+```js
+for(const item of list) {
+  console.log(item) // 'firstVal', 'Mid', 'xyz', 'secondVal'
+}
+```
+
+Usage as spread operator
+
+```js
+const items = [...list] // ['firstVal', 'Mid', 'xyz', 'secondVal']
 ```
