@@ -1,6 +1,6 @@
 {
   "name": "@js-labs/data-structures",
-  "version": "1.0.0-pre-alpha-5",
+  "version": "1.0.0-pre-alpha-6",
   "description":
     "There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of populare data structures in javascript.",
   "main": "index.js",
@@ -20,8 +20,8 @@
     "test:travis": "export WEBPACK_ENV=dev; karma start --single-run",
     "coveralls":
       "cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "prepublish": "npm build & npm run dev",
-    "build&publish": "npm run prepublish & npm publish"
+    "prepare": "npm run build & npm run dev",
+    "publish": "npm publish --access public"
   },
   "keywords": [
     "data-structures",
@@ -35,7 +35,7 @@
     "name": "Abhishek Prakash",
     "email": "abhishekabby@gmail.com"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.1.18",

@@ -10,7 +10,7 @@ Data Structures in Javascript
 There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of populare data structures in javascript.
 
 # Installation
-npm - `npm install es6-data-structures`
+npm - `npm install @js-labs/data-structures`
 
 # Getting hands dirty
 Clone the repo
@@ -73,7 +73,7 @@ and will be published in
 Import BST class and instantiate it
 
 ```js
-import { BST } from 'es6-data-structures/lib/ds';
+import { BST } from '@js-labs/data-structures/lib/ds';
 const bst = new BST
 ```
 
@@ -121,7 +121,7 @@ bst.delete(20);
 Import Graph class and instantiate it and create an object of adjacency list implementation of Graph. To create a directed graph pass the string argument '**directed**'. If the Graph class is called without a parameter then by default its undirected graph.
 
 ```js
-import { Graph } from 'es6-data-structures/lib/ds';
+import { Graph } from '@js-labs/data-structures/lib/ds';
 const graph = new Graph; // this will create an undirected Graph
 const graph = new Graph('directed'); // this will create a directed graph or diGraph
 
@@ -169,7 +169,7 @@ adjList.getEdgeWeight('A', 'B');
 Import Queue class and create a queue object.
 
 ```js
-import { Queue } from 'es6-data-structures/lib/ds';
+import { Queue } from '@js-labs/data-structures/lib/ds';
 const queue = new Queue;
 ```
 
@@ -203,7 +203,7 @@ queue.clear() // this will empty the queue
 Import LinkedList data structure and create a list object.
 
 ```js
-import { LinkedList } from 'es6-data-structures/lib/ds';
+import { LinkedList } from '@js-labs/data-structures/lib/ds';
 const list = new LinkedList;
 ```
 
