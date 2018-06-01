@@ -7,7 +7,7 @@ Data Structures in Javascript
 [![Coverage Status](https://coveralls.io/repos/github/linux-nerd/data-structures.js/badge.svg)](https://coveralls.io/github/linux-nerd/data-structures.js)
 
 # Background
-There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of populare data structures in javascript.
+There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of popular data structures in javascript.
 
 # Installation
 npm - `npm install @js-labs/data-structures`
@@ -50,7 +50,7 @@ Data structures covered so far -
 # Contribution
 Your contribution is highly appreciated. You can contribute in several ways -
 * Opening an issue in the tracker
-* Updating and adding documentaion
+* Updating and adding documentation
 * Adding new features
 * Adding demo
 
