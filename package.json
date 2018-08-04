@@ -1,6 +1,6 @@
 {
   "name": "@js-labs/data-structures",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.1.1",
   "description": "There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of populare data structures in javascript.",
   "main": "index.js",
   "files": [
