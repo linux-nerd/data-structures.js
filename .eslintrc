@@ -25,5 +25,12 @@
   "plugins": [],
   "rules": {
     // ... lots of lots of rules here
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
   }
 }

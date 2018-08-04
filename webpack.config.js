@@ -13,17 +13,24 @@ if (process.env.WEBPACK_ENV && process.env.WEBPACK_ENV.trim() === 'build') {
 }
 
 var config = {
-  entry: __dirname + '/src/index.js',
+  entry: [__dirname + '/node_modules/regenerator-runtime/runtime', __dirname + '/src/index.js'],
   devtool: 'source-map',
+
   output: {
+    globalObject: 'typeof self !== \'undefined\' ? self : this',
     path: __dirname + '/lib',
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
+  resolve: {
+    modules: [
+      '/Users/abhishekprakash/Workspace/mine/data-structures-es6/node_modules'
+    ]
+  },
   module: {
-    loaders: [
+    rules: [
       {
         test: /(\.jsx|\.js)$/,
         loader: 'babel-loader',
