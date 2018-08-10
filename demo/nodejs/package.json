@@ -1,0 +1,14 @@
+{
+  "name": "node-demo",
+  "version": "1.0.0",
+  "description": "Usage of data structures in node env",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abhishek Prakash",
+  "license": "MIT",
+  "dependencies": {
+    "@js-labs/data-structures": "^1.0.0-alpha.1.1"
+  }
+}
