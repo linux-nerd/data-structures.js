@@ -6,3 +6,4 @@ console.log(require('./linked-lists/find-nth-from-last')(createList(), 3));
 
 // reverse a linked list
 console.log(JSON.stringify(require('./linked-lists/reverse-list')(createList().head)));
+console.log(JSON.stringify(require('./linked-lists/reverse-list')(createList(2, 3, 6, 1).head)));

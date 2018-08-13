@@ -37,6 +37,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "webpack": "^4.16.4",
     "@webpack-cli/migrate": "^0.1.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -63,7 +64,5 @@
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack-cli": "^3.1.0"
   },
-  "dependencies": {
-    "webpack": "^4.16.4"
-  }
+  "dependencies": {}
 }

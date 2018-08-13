@@ -24,11 +24,6 @@ var config = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  resolve: {
-    modules: [
-      '/Users/abhishekprakash/Workspace/mine/data-structures-es6/node_modules'
-    ]
-  },
   module: {
     rules: [
       {
