@@ -1,5 +1,8 @@
-const llist = require('./linked-lists/create-linked-list');
+const createList = require('./linked-lists/create-linked-list').createList;
 
 // test for find-nth-from-last
-console.log(require('./linked-lists/find-nth-from-last')(llist, 7));
-console.log(require('./linked-lists/find-nth-from-last')(llist, 3));
+console.log(require('./linked-lists/find-nth-from-last')(createList(), 7));
+console.log(require('./linked-lists/find-nth-from-last')(createList(), 3));
+
+// reverse a linked list
+console.log(JSON.stringify(require('./linked-lists/reverse-list')(createList().head)));
