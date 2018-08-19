@@ -23,6 +23,13 @@ describe('Linked List', () => {
     expect(list.isEmpty()).toBeFalsy();
     expect(list.head.key).toContain('firstVal');
     expect(list.head.next).toBe(null);
+    expect(list.tail.key).toBe('firstVal');
+
+    list.insertFirst('secondFirst');
+    expect(list.size()).toBe(2);
+    expect(list.head.key).toContain('secondFirst');
+    expect(list.head.next.key).toContain('firstVal');
+    expect(list.tail.key).toBe('firstVal');
   });
 
   describe('When first item is inserted', () => {
@@ -40,16 +47,21 @@ describe('Linked List', () => {
       expect(list.size()).toBe(2);
       expect(list.head.next.key).toBe('secondVal');
       expect(list.head.next.next).toBe(null);
+      expect(list.tail.key).toBe('secondVal');
     });
 
     it('should insert item after specified item', () => {
+      expect(list.tail.key).toBe('firstVal');
+
       list.insertAfter('secondVal', 'firstVal');
       expect(list.size()).toBe(2);
       expect(list.search('secondVal')).toBeTruthy();
+      expect(list.tail.key).toBe('secondVal');
 
       list.insertAfter('thirdVal', 'xyz');
       expect(list.size()).toBe(2);
       expect(list.search('thirdVal')).toBeFalsy();
+      expect(list.tail.key).toBe('secondVal');
 
       list.insertAfter('thirdVal', 'firstVal');
       expect(list.size()).toBe(3);
@@ -93,18 +105,44 @@ describe('Linked List', () => {
     list.insert('B');
     list.insert('C');
     expect(list.size()).toBe(3);
+    expect(list.tail.key).toBe('C');
 
     list.remove('B');
     expect(list.size()).toBe(2);
     expect(list.search('B')).toBeFalsy();
 
-    list.remove('A');
-    expect(list.size()).toBe(1);
-    expect(list.search('A')).toBeFalsy();
-
     list.remove('C');
-    expect(list.size()).toBe(0);
+    expect(list.size()).toBe(1);
     expect(list.search('C')).toBeFalsy();
+    expect(list.tail.key).toBe('A');
+
+    list.remove('A');
+    expect(list.size()).toBe(0);
+    expect(list.search('A')).toBeFalsy();
   });
 
+  it('should remove item from the head', () => {
+    expect(list.size()).toBe(0);
+
+    list.insert('A');
+    list.insert('B');
+    list.insert('C');
+    expect(list.size()).toBe(3);
+    expect(list.tail.key).toBe('C');
+
+    let item = list.removeFirst();
+    expect(item.key).toBe('A');
+    expect(list.tail.key).toBe('C');
+    expect(list.size()).toBe(2);
+
+    item = list.removeFirst();
+    expect(item.key).toBe('B');
+    expect(list.tail.key).toBe('C');
+    expect(list.size()).toBe(1);
+
+    item = list.removeFirst();
+    expect(item.key).toBe('C');
+    expect(list.tail).toEqual(null);
+    expect(list.size()).toBe(0);
+  });
 });
