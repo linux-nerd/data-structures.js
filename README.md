@@ -46,6 +46,7 @@ Data structures covered so far -
 - [Graph](#graph)
 - [Queue](#queue)
 - [Linked List](#link-list)
+- [Stack](#stack)
 
 # Contribution
 Your contribution is highly appreciated. You can contribute in several ways -
@@ -241,4 +242,38 @@ Usage as spread operator
 
 ```js
 const items = [...list] // ['firstVal', 'Mid', 'xyz', 'secondVal']
+```
+
+# <a name="stack"></a> Stack (Linked List Implementation)
+
+Import Stack data structure and create a list object.
+
+```js
+import { Stack } from '@js-labs/data-structures/lib/ds';
+// const { Stack } = require('@js-labs/data-structures/lib/ds')
+const stack = new Stack;
+```
+
+Get size of the stack and check if the stack is empty
+
+```js
+stack.size()  //0
+stack.isEmpty() //true
+```
+
+Push items in the stack
+
+```js
+stack.push('item1');
+stack.size()  //1
+
+stack.push('item2');
+stack.size()  //2
+```
+
+Pop items from the stack
+
+```js
+stack.pop() //item2
+stack.pop() //item1
 ```
