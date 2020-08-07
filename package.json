@@ -49,8 +49,8 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.11.0",
-    "@babel/core": "^7.11.0",
+    "@babel/cli": "^7.10.0",
+    "@babel/core": "^7.10.0",
     "@babel/preset-env": "^7.11.0",
     "@webpack-cli/migrate": "^0.1.0",
     "babel-eslint": "^8.2.6",
