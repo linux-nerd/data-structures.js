@@ -4,7 +4,7 @@
 Data Structures in Javascript
 -----------------------------
 ![Build Status](https://travis-ci.org/linux-nerd/data-structures.js.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/linux-nerd/data-structures.js/badge.svg)](https://coveralls.io/github/linux-nerd/data-structures.js)
+[![Coverage Status](https://coveralls.io/repos/github/linux-nerd/data-structures.js/badge.svg?branch=master)](https://coveralls.io/github/linux-nerd/data-structures.js)
 
 # Background
 There are neither a lot of resources on internet nor any book which guides and dictates best practices in the implementation of popular Data Structures using Javascript. The purpose of this library is to provide cooked implementation of popular data structures in javascript.
