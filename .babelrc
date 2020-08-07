@@ -1,6 +1,13 @@
 {
   "presets": [
-    "es2015"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
   ],
   "plugins": [
     "babel-plugin-add-module-exports"

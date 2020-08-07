@@ -13,7 +13,7 @@ if (process.env.WEBPACK_ENV && process.env.WEBPACK_ENV.trim() === 'build') {
 }
 
 var config = {
-  entry: [__dirname + '/node_modules/regenerator-runtime/runtime', __dirname + '/src/index.js'],
+  entry: __dirname + '/src/index.js',
   devtool: 'source-map',
 
   output: {
@@ -26,7 +26,6 @@ var config = {
   },
   resolve: {
     modules: [
-      '/Users/abhishekprakash/Workspace/mine/data-structures-es6/node_modules'
     ]
   },
   module: {
@@ -36,7 +35,7 @@ var config = {
         loader: 'babel-loader',
         exclude: /(node_modules|bower_components)/,
         query: {
-          presets: ['es2015']
+          presets: ["@babel/preset-env"]
         }
       },
       {
