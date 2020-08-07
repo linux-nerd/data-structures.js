@@ -22,7 +22,7 @@
     "coveralls": "cat ./coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "prepare": "npm run build & npm run dev",
     "publish:npm": "npm publish --access public",
-    "test:jest": "jest --coverage --coverageDirectory=\"coverage\""
+    "test:jest": "jest --coverage"
   },
   "jest": {
     "moduleFileExtensions": [
