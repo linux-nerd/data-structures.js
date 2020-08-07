@@ -25,7 +25,6 @@ node_js:
     #- secure: "L7nrZwkAtFtYrP2DykPXgZvEKjkv0J/TwQ/r2QGxFTaBq4VZn+2Dw0YS7uCxoMqYzDwH0aAOqxoutibVpk8Z/16nE3tNmU5RzltMd6Xmt3qU2f/JDQLMo6PSlBodnjOUsDHJgmtrcbjhqrx/znA237BkNUu6UZRT7mxhXIZpn0U="
 cache:
   directories:
-    - ./node_modules
     - ./.chrome/chromium
 install:
   - npm install
