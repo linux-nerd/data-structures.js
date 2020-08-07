@@ -19,7 +19,7 @@
     "test": "export WEBPACK_ENV=dev; npm run test:jest",
     "test:travis:win32": "SET WEBPACK_ENV=dev & npm run test:jest",
     "test:travis": "export WEBPACK_ENV=dev; npm run test:jest",
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
+    "coveralls": "jest --coverage && coveralls < coverage/lcov.info",
     "prepare": "npm run build & npm run dev",
     "publish:npm": "npm publish --access public",
     "test:jest": "jest"
