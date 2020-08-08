@@ -1,4 +1,4 @@
-import { Queue } from '../queue/queue';
+import { Queue } from "../queue/queue";
 /**
  * This creates a node
  * @name BSTNode
@@ -7,8 +7,18 @@ import { Queue } from '../queue/queue';
  * @param right
  * @return BSTNode
  */
-export class BSTNode {
-  constructor(key, details = null, left = null, right = null) {
+export class BSTNode<T> {
+  private _key: T;
+  private _details: string | null;
+  private _left: BSTNode<T> | null;
+  private _right: BSTNode<T> | null;
+
+  constructor(
+    key: T,
+    details: string | null = null,
+    left: BSTNode<T> | null = null,
+    right: BSTNode<T> | null = null
+  ) {
     // the constructor creates the leaf node
     this._key = key;
     this._details = details;
@@ -17,56 +27,74 @@ export class BSTNode {
   }
 
   /* Getter and Setter for key */
-  get key() { return this._key; }
-  set key(key) { this._key = key; }
+  get key(): T {
+    return this._key;
+  }
+  set key(key) {
+    this._key = key;
+  }
 
-  /* Getter and Setter for key */
-  get details() { return this._details; }
-  set details(details) { this._details = details; }
+  /* Getter and Setter for details */
+  get details(): string | null {
+    return this._details;
+  }
+  set details(details) {
+    this._details = details;
+  }
 
   /* Getter and Setter for left sub tree */
-  get left() { return this._left; }
-  set left(left) { this._left = left; }
+  get left(): BSTNode<T> | null {
+    return this._left;
+  }
+  set left(left) {
+    this._left = left;
+  }
 
   /* Getter and Setter for right sub tree */
-  get right() { return this._right; }
-  set right(right) { this._right = right; }
-
+  get right(): BSTNode<T> | null {
+    return this._right;
+  }
+  set right(right) {
+    this._right = right;
+  }
 }
 
 /**
  * Private methods name
  */
-const inOrderTraversal = Symbol('inorder');
-const preOrderTraversal = Symbol('preorder');
-const postOrderTraversal = Symbol('postorder');
-const levelOrderTraversal = Symbol('levelorder');
+const inOrderTraversal = Symbol("inorder");
+const preOrderTraversal = Symbol("preorder");
+const postOrderTraversal = Symbol("postorder");
+const levelOrderTraversal = Symbol("levelorder");
 
 /**
  * Private properties name
  */
-const length = Symbol('length');
+const length = Symbol("length");
 
 /**
  * Binary Search Tree
  */
-export class BST {
+export class BST<T> {
+  public root: BSTNode<T>;
+  private length: number;
+
   constructor() {
     this.root = null;
-    this[length] = 0;
+    this.length = 0;
   }
 
   get len() {
-    return this[length];
+    return this.length;
   }
 
   /**
    * Insert value in the BST
    * @param {*} val
    */
-  insert(val, details = null) {
+  insert(val: T, details: string | null = null) {
     // create a BST node
-    const bstNode = new BSTNode(val, details);
+    const bstNode = new BSTNode<T>(val, details);
 
     /**
      * @name recurseBST
@@ -75,29 +103,29 @@ export class BST {
     const recurseBST = (node = this.root) => {
       if (node.key > val && !node.left) {
         node.left = bstNode;
-        this[length]++;
+        this.length++;
       } else if (node.key > val) {
         recurseBST(node.left);
       } else if (node.key < val && !node.right) {
         node.right = bstNode;
-        this[length]++;
+        this.length++;
       } else if (node.key < val) {
         recurseBST(node.right);
       }
-    }
+    };
 
     if (!this.root) {
       // if the root is null then assign the created node to the root.
       this.root = bstNode;
-      this[length]++;
+      this.length++;
     } else {
       recurseBST();
     }
   }
 
-  delete(val) {
+  delete(val: T) {
     if (!this.root) {
-      return new Error('BST is empty. Cannot delete from empty BST');
+      return new Error("BST is empty. Cannot delete from empty BST");
     } else {
       let findNode = this.lookup(val);
       if (findNode.hasVal) {
@@ -109,19 +137,23 @@ export class BST {
           if (findNode.parentNode === null) {
             this.root = null;
           } else {
-            const direction = findNode.parentNode.key > val ? 'left' : 'right';
+            const direction = findNode.parentNode.key > val ? "left" : "right";
             findNode.parentNode[direction] = null;
           }
-          this[length]--;
+          this.length--;
         }
         // case 2
         // when node has just 1 child
         // Simply delete the key and point the parent to the child
-        else if (!!findNode.currentNode.left ^ !!findNode.currentNode.right) {
-          const parentToCurNodeDir = findNode.parentNode.key > val ? 'left' : 'right';
-          const curNodeToChildDir = findNode.currentNode.left ? 'left' : 'right';
-          findNode.parentNode[parentToCurNodeDir] = findNode.currentNode[curNodeToChildDir];
-          this[length]--;
+        else if (+!!findNode.currentNode.left ^ +!!findNode.currentNode.right) {
+          const parentToCurNodeDir =
+            findNode.parentNode.key > val ? "left" : "right";
+          const curNodeToChildDir = findNode.currentNode.left
+            ? "left"
+            : "right";
+          findNode.parentNode[parentToCurNodeDir] =
+            findNode.currentNode[curNodeToChildDir];
+          this.length--;
         }
         // case 3
         // when node has both left and right children
@@ -133,10 +165,10 @@ export class BST {
           const successor = this.findMin(findNode.currentNode.right);
           findNode.currentNode.key = successor.subtree.key;
           successor.parent.left = null;
-          this[length]--;
+          this.length--;
         }
       } else {
-        return new Error('Node not found.');
+        return new Error("Node not found.");
       }
     }
   }
@@ -160,9 +192,13 @@ export class BST {
    * @param {string|number} val
    * @return {object} response
    */
-  lookup(val) {
-    let response = { hasVal: false, currentNode: null, parentNode: null };
-    const lookRecursively = (node = this.root, parent = null) => {
+  lookup(val: T) {
+    let response: {
+      hasVal: boolean;
+      currentNode: BSTNode<T>;
+      parentNode: BSTNode<T>;
+    } = { hasVal: false, currentNode: null, parentNode: null };
+    const lookRecursively = (node = this.root, parent: BSTNode<T> = null) => {
       if (node) {
         if (node.key === val) {
           response.hasVal = true;
@@ -174,7 +210,7 @@ export class BST {
           lookRecursively(node.right, node);
         }
       }
-    }
+    };
 
     lookRecursively();
     return response;
@@ -182,10 +218,10 @@ export class BST {
 
   /**
    * Returns height of the Node
-   * @param {BST} node
+   * @param {BSTNode<T>} node
    * @return {number} height
    */
-  height(node = this.root) {
+  height(node: BSTNode<T> = this.root): number {
     if (node === null) {
       return -1;
     }
@@ -197,23 +233,25 @@ export class BST {
    * Print the values of the BST in specific order
    * @param {string} type - value of type can be inOrder, preOrder, postOrder, levelOrder
    */
-  traverse(type) {
+  traverse(type: string) {
     let retVal;
     switch (type) {
-      case 'inOrder':
+      case "inOrder":
         retVal = this[inOrderTraversal]();
         break;
-      case 'preOrder':
+      case "preOrder":
         retVal = this[preOrderTraversal]();
         break;
-      case 'postOrder':
+      case "postOrder":
         retVal = this[postOrderTraversal]();
         break;
-      case 'levelOrder':
+      case "levelOrder":
         retVal = this[levelOrderTraversal]();
         break;
       default:
-        retVal = new Error('Type should be one of inOrder, preOrder, postOrder or levelOrder');
+        retVal = new Error(
+          "Type should be one of inOrder, preOrder, postOrder or levelOrder"
+        );
         break;
     }
 
@@ -225,8 +263,8 @@ export class BST {
    * Always returns a sorted array
    */
   [inOrderTraversal](subtree = this.root) {
-    const traversalList = [];
-    const recurseTraversal = (node) => {
+    const traversalList: T[] = [];
+    const recurseTraversal = (node: BSTNode<T>) => {
       if (node) {
         recurseTraversal(node.left);
         traversalList.push(node.key);
@@ -242,8 +280,8 @@ export class BST {
    * Preorder traversal - Root, Left, Right
    */
   [preOrderTraversal](subtree = this.root) {
-    const traversalList = [];
-    const recurseTraversal = (node) => {
+    const traversalList: T[] = [];
+    const recurseTraversal = (node: BSTNode<T>) => {
       if (node) {
         traversalList.push(node.key);
         recurseTraversal(node.left);
@@ -259,8 +297,8 @@ export class BST {
    * Postorder traversal - Left, Right, Root
    */
   [postOrderTraversal](subtree = this.root) {
-    const traversalList = [];
-    const recurseTraversal = (node) => {
+    const traversalList: T[] = [];
+    const recurseTraversal = (node: BSTNode<T>) => {
       if (node) {
         recurseTraversal(node.left);
         recurseTraversal(node.right);
@@ -277,7 +315,7 @@ export class BST {
    */
   [levelOrderTraversal]() {
     const bfsTraversalList = [];
-    const traversalQueue = new Queue;
+    const traversalQueue = new Queue<BSTNode<T>>();
 
     if (this.root !== null) {
       traversalQueue.enqueue(this.root);
@@ -285,13 +323,13 @@ export class BST {
 
     while (!traversalQueue.isEmpty()) {
       let presentNode = traversalQueue.top();
-      if (presentNode.left) {
-        traversalQueue.enqueue(presentNode.left);
+      if ((presentNode as BSTNode<T>).left) {
+        traversalQueue.enqueue((presentNode as BSTNode<T>).left);
       }
-      if (presentNode.right) {
-        traversalQueue.enqueue(presentNode.right);
+      if ((presentNode as BSTNode<T>).right) {
+        traversalQueue.enqueue((presentNode as BSTNode<T>).right);
       }
-      bfsTraversalList.push(presentNode.key);
+      bfsTraversalList.push((presentNode as BSTNode<T>).key);
 
       traversalQueue.dequeue();
     }
