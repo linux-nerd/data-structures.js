@@ -1,38 +1,37 @@
-var webpack = require('webpack');
-var path = require('path');
-var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-var libraryName = 'ds';
+var webpack = require("webpack");
+var path = require("path");
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+var libraryName = "ds";
 var plugins = [],
   outputFile;
 
-if (process.env.WEBPACK_ENV && process.env.WEBPACK_ENV.trim() === 'build') {
+if (process.env.WEBPACK_ENV && process.env.WEBPACK_ENV.trim() === "build") {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
+  outputFile = libraryName + ".min.js";
 } else {
-  outputFile = libraryName + '.js';
+  outputFile = libraryName + ".js";
 }
 
 var config = {
-  entry: __dirname + '/src/index.js',
-  devtool: 'source-map',
+  entry: path.join(__dirname, "src", "index.js"),
+  devtool: "source-map",
 
   output: {
-    globalObject: 'typeof self !== \'undefined\' ? self : this',
-    path: __dirname + '/lib',
+    globalObject: "typeof self !== 'undefined' ? self : this",
+    path: path.join(__dirname, "lib"),
     filename: outputFile,
     library: libraryName,
-    libraryTarget: 'umd',
+    libraryTarget: "umd",
     umdNamedDefine: true
   },
   resolve: {
-    modules: [
-    ]
+    modules: []
   },
   module: {
     rules: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         exclude: /(node_modules|bower_components)/,
         query: {
           presets: ["@babel/preset-env"]
@@ -40,14 +39,14 @@ var config = {
       },
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'eslint-loader',
+        loader: "eslint-loader",
         exclude: /node_modules/
       }
     ]
   },
   resolve: {
-    modules: [__dirname, 'src'],
-    extensions: ['.js']
+    modules: [__dirname, "src"],
+    extensions: [".js"]
   }
 };
 
