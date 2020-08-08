@@ -8,6 +8,11 @@
     "allowJs": true,
     "sourceMap": true,
     "downlevelIteration": true,
-    "declaration": true
+    "declaration": true,
+    "declarationDir": "./typings/",
+    "skipLibCheck": true,
+    "composite": true,
+    "removeComments": true,
+    "incremental": true
   }
 }
