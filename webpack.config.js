@@ -30,6 +30,11 @@ var config = {
   module: {
     rules: [
       {
+        test: /(\.tsx|\.ts)$/,
+        use: "ts-loader",
+        exclude: /node_modules/
+      },
+      {
         test: /(\.jsx|\.js)$/,
         loader: "babel-loader",
         exclude: /(node_modules|bower_components)/,
@@ -46,7 +51,7 @@ var config = {
   },
   resolve: {
     modules: [__dirname, "src"],
-    extensions: [".js"]
+    extensions: [".js", ".ts"]
   }
 };
 

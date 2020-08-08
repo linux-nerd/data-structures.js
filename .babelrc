@@ -7,9 +7,8 @@
           "node": "current"
         }
       }
-    ]
+    ],
+    "@babel/preset-typescript"
   ],
-  "plugins": [
-    "babel-plugin-add-module-exports"
-  ]
+  "plugins": ["babel-plugin-add-module-exports"]
 }
