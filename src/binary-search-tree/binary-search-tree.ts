@@ -9,13 +9,13 @@ import { Queue } from "../queue/queue";
  */
 export class BSTNode<T> {
   private _key: T;
-  private _details: string | null;
+  private _details: any;
   private _left: BSTNode<T> | null;
   private _right: BSTNode<T> | null;
 
   constructor(
     key: T,
-    details: string | null = null,
+    details: any = null,
     left: BSTNode<T> | null = null,
     right: BSTNode<T> | null = null
   ) {
@@ -35,7 +35,7 @@ export class BSTNode<T> {
   }
 
   /* Getter and Setter for details */
-  get details(): string | null {
+  get details(): any {
     return this._details;
   }
   set details(details) {
@@ -92,7 +92,7 @@ export class BST<T> {
    * Insert value in the BST
    * @param {*} val
    */
-  insert(val: T, details: string | null = null) {
+  insert(val: T, details: any = null) {
     // create a BST node
     const bstNode = new BSTNode<T>(val, details);
 
