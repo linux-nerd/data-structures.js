@@ -1,9 +1,15 @@
-import { BST } from '../binary-search-tree/binary-search-tree';
+import { BST } from "../binary-search-tree/binary-search-tree";
 
-export class AdjacencyList {
-  constructor(isDiGraph) {
+export class AdjacencyList<T> {
+  private diGraph: boolean;
+  private stopRecursion: boolean;
+
+  public vertices: Map<T, BST<T>>;
+
+  constructor(isDiGraph: boolean) {
     this.diGraph = isDiGraph;
-    this.vertices = new Map();
+    this.vertices = new Map<T, BST<T>>();
+    this.stopRecursion = null;
   }
 
   /**
@@ -11,9 +17,9 @@ export class AdjacencyList {
    * If the node is already added to the map, then nothing happens
    * @param {string|number} node
    */
-  addNode(node) {
+  addNode(node: T) {
     if (!this.vertices.get(node)) {
-      this.vertices.set(node, new BST);
+      this.vertices.set(node, new BST<T>());
     }
   }
 
@@ -21,7 +27,7 @@ export class AdjacencyList {
    * It removes the node from the map
    * @param {string|number} node
    */
-  removeNode(node) {
+  removeNode(node: T) {
     // Remove all the vertices formed by this node
     this.vertices.forEach((val, key) => {
       this.removeEdge(key, node);
@@ -40,7 +46,7 @@ export class AdjacencyList {
    * @param {string|number} toVertex
    * @param {number} weight
    */
-  addEdge(fromVertex, toVertex, weight) {
+  addEdge(fromVertex: T, toVertex: T, weight?: number) {
     if (!this.vertices.has(fromVertex)) {
       this.addNode(fromVertex);
     }
@@ -61,11 +67,13 @@ export class AdjacencyList {
    * @param {string|number} fromVertex
    * @param {string|number} toVertex
    */
-  removeEdge(fromVertex, toVertex) {
+  removeEdge(fromVertex: T, toVertex: T): void | Error {
     if (this.vertices.has(fromVertex)) {
       const deleteEdge = this.vertices.get(fromVertex).delete(toVertex);
       if (deleteEdge && deleteEdge.constructor === Error) {
-        return new Error(`No edge present between ${fromVertex} and ${toVertex}`);
+        return new Error(
+          `No edge present between ${fromVertex} and ${toVertex}`
+        );
       }
     } else {
       return new Error(`No edge present between ${fromVertex} and ${toVertex}`);
@@ -74,12 +82,12 @@ export class AdjacencyList {
     // if the graph is undirected and id its the first call to the removeEdge method
     // set stopRecursion to true and call removeEdge method again by
     // swapping the parameters.
-    if (!this.diGraph && !this.removeEdge.stopRecursion) {
-      this.removeEdge.stopRecursion = true;
+    if (!this.diGraph && !this.stopRecursion) {
+      this.stopRecursion = true;
       this.removeEdge(toVertex, fromVertex);
     } else {
-      if (this.removeEdge.stopRecursion) {
-        this.removeEdge.stopRecursion = undefined;
+      if (this.stopRecursion) {
+        this.stopRecursion = null;
       }
     }
   }
@@ -89,12 +97,14 @@ export class AdjacencyList {
    * @param {string|number} fromVertex
    * @param {string|number} toVertex
    */
-  getEdgeWeight(fromVertex, toVertex) {
-    let weight;
+  getEdgeWeight(fromVertex: T, toVertex: T): number | Error {
+    let weight: number;
     if (this.vertices.has(fromVertex)) {
       const lookup = this.vertices.get(fromVertex).lookup(toVertex);
       weight = lookup.hasVal ? lookup.currentNode.details.weight : void 0;
     }
-    return weight ? weight : new Error(`Edge not found between ${fromVertex} and ${toVertex}`);
+    return weight
+      ? weight
+      : new Error(`Edge not found between ${fromVertex} and ${toVertex}`);
   }
 }

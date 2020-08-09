@@ -13,7 +13,7 @@ if (process.env.WEBPACK_ENV && process.env.WEBPACK_ENV.trim() === "build") {
 }
 
 var config = {
-  entry: path.join(__dirname, "src", "index.js"),
+  entry: path.join(__dirname, "src", "index.ts"),
   devtool: "source-map",
 
   output: {
@@ -29,6 +29,11 @@ var config = {
   },
   module: {
     rules: [
+      {
+        test: /(\.tsx|\.ts)$/,
+        use: "ts-loader",
+        exclude: /node_modules/
+      },
       {
         test: /(\.jsx|\.js)$/,
         loader: "babel-loader",
@@ -46,7 +51,7 @@ var config = {
   },
   resolve: {
     modules: [__dirname, "src"],
-    extensions: [".js"]
+    extensions: [".js", ".ts"]
   }
 };
 

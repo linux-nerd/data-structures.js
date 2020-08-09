@@ -1,22 +1,22 @@
-import { BST } from './binary-search-tree';
+import { BST } from "./binary-search-tree";
 
-describe('Binary Search Tree', () => {
-  let bst;
+describe("Binary Search Tree", () => {
+  let bst: BST<number>;
 
   beforeEach(() => {
-    bst = new BST();
+    bst = new BST<number>();
   });
 
-  it('should create bst object', () => {
+  it("should create bst object", () => {
     expect(bst).toBeDefined();
   });
 
-  it('should create BST with null root', () => {
+  it("should create BST with null root", () => {
     expect(bst.root).toBe(null);
     expect(bst.len).toBe(0);
   });
 
-  describe('Height of the node', () => {
+  describe("Height of the node", () => {
     beforeEach(() => {
       bst.insert(5);
       bst.insert(6);
@@ -24,25 +24,25 @@ describe('Binary Search Tree', () => {
       bst.insert(2);
     });
 
-    it('should have height of node 4 as 1', () => {
+    it("should have height of node 4 as 1", () => {
       expect(bst.height(bst.lookup(4).currentNode)).toBe(1);
     });
 
-    it('should have height of tree = 2', () => {
+    it("should have height of tree = 2", () => {
       expect(bst.height()).toBe(2);
     });
 
-    it('should have height 0 of leaf nodes', () => {
+    it("should have height 0 of leaf nodes", () => {
       expect(bst.height(bst.lookup(6).currentNode)).toBe(0);
     });
 
-    it('should have height 0 of leaf nodes', () => {
+    it("should have height 0 of leaf nodes", () => {
       expect(bst.height(bst.lookup(2).currentNode)).toBe(0);
     });
   });
 
-  describe('Insertion operation', () => {
-    it('should insert values in the BST', () => {
+  describe("Insertion operation", () => {
+    it("should insert values in the BST", () => {
       bst.insert(5);
       expect(bst.root.key).toBe(5);
       expect(bst.len).toBe(1);
@@ -57,7 +57,7 @@ describe('Binary Search Tree', () => {
     });
   });
 
-  describe('Lookup operation', () => {
+  describe("Lookup operation", () => {
     beforeEach(() => {
       bst.insert(5);
       bst.insert(6);
@@ -65,21 +65,21 @@ describe('Binary Search Tree', () => {
       bst.insert(2);
     });
 
-    it('should lookup for value 6 in the bst and return the node with key 6 and its parent node', () => {
+    it("should lookup for value 6 in the bst and return the node with key 6 and its parent node", () => {
       const findNode = bst.lookup(6);
       expect(findNode.hasVal).toBeTruthy();
       expect(findNode.currentNode.key).toBe(6);
       expect(findNode.parentNode.key).toBe(5);
     });
 
-    it('should lookup for value 100 in the bst and should return the currentNode and parentNode as null', () => {
+    it("should lookup for value 100 in the bst and should return the currentNode and parentNode as null", () => {
       const findNode = bst.lookup(100);
       expect(findNode.hasVal).toBeFalsy();
       expect(findNode.currentNode).toBe(null);
       expect(findNode.parentNode).toBe(null);
     });
 
-    it('should lookup for value 5 and should return currentNode as 5 and parentNode as null', () => {
+    it("should lookup for value 5 and should return currentNode as 5 and parentNode as null", () => {
       const findNode = bst.lookup(5);
       expect(findNode.hasVal).toBeTruthy();
       expect(findNode.currentNode.key).toBe(5);
@@ -87,7 +87,7 @@ describe('Binary Search Tree', () => {
     });
   });
 
-  describe('Delete operation', () => {
+  describe("Delete operation", () => {
     beforeEach(() => {
       bst.insert(11);
       bst.insert(6);
@@ -102,11 +102,11 @@ describe('Binary Search Tree', () => {
       bst.insert(49);
     });
 
-    it('should have 11 nodes in the bst', () => {
+    it("should have 11 nodes in the bst", () => {
       expect(bst.len).toBe(11);
     });
 
-    it('should delete leaf with value 5', () => {
+    it("should delete leaf with value 5", () => {
       expect(bst.len).toBe(11);
 
       const lookUpFor5 = bst.lookup(5);
@@ -119,7 +119,7 @@ describe('Binary Search Tree', () => {
       expect(lookUpFor5.parentNode.right).toBe(null);
     });
 
-    it('should delete node 8, with one child', () => {
+    it("should delete node 8, with one child", () => {
       expect(bst.len).toBe(11);
 
       const lookUpFor8 = bst.lookup(8);
@@ -133,7 +133,7 @@ describe('Binary Search Tree', () => {
       expect(lookUpFor8.parentNode.right.key).toBe(10);
     });
 
-    it('should delete node 19, with two children', () => {
+    it("should delete node 19, with two children", () => {
       expect(bst.len).toBe(11);
 
       const lookupFor19 = bst.lookup(19);
@@ -146,7 +146,10 @@ describe('Binary Search Tree', () => {
       const successor = bst.findMin(lookupFor19.currentNode.right);
       expect(successor.subtree.key).toBe(31);
 
-      const dir = lookupFor19.currentNode.key > lookupFor19.parentNode.key ? 'right' : 'left';
+      const dir =
+        lookupFor19.currentNode.key > lookupFor19.parentNode.key
+          ? "right"
+          : "left";
 
       bst.delete(19);
       expect(bst.len).toBe(10);
@@ -155,7 +158,7 @@ describe('Binary Search Tree', () => {
     });
   });
 
-  describe('Traversal Operation', () => {
+  describe("Traversal Operation", () => {
     beforeEach(() => {
       bst.insert(11);
       bst.insert(6);
@@ -169,20 +172,68 @@ describe('Binary Search Tree', () => {
       bst.insert(31);
       bst.insert(49);
     });
-    it('should return inorder list', () => {
-      expect(bst.traverse('inOrder')).toEqual([4, 5, 6, 8, 10, 11, 17, 19, 31, 43, 49]);
+    it("should return inorder list", () => {
+      expect(bst.traverse("inOrder")).toEqual([
+        4,
+        5,
+        6,
+        8,
+        10,
+        11,
+        17,
+        19,
+        31,
+        43,
+        49
+      ]);
     });
 
-    it('should return preorder list', () => {
-      expect(bst.traverse('preOrder')).toEqual([11, 6, 4, 5, 8, 10, 19, 17, 43, 31, 49]);
+    it("should return preorder list", () => {
+      expect(bst.traverse("preOrder")).toEqual([
+        11,
+        6,
+        4,
+        5,
+        8,
+        10,
+        19,
+        17,
+        43,
+        31,
+        49
+      ]);
     });
 
-    it('should return postorder list', () => {
-      expect(bst.traverse('postOrder')).toEqual([5, 4, 10, 8, 6, 17, 31, 49, 43, 19, 11]);
+    it("should return postorder list", () => {
+      expect(bst.traverse("postOrder")).toEqual([
+        5,
+        4,
+        10,
+        8,
+        6,
+        17,
+        31,
+        49,
+        43,
+        19,
+        11
+      ]);
     });
 
-    it('should return bfs list', () => {
-      expect(bst.traverse('levelOrder')).toEqual([11, 6, 19, 4, 8, 17, 43, 5, 10, 31, 49]);
+    it("should return bfs list", () => {
+      expect(bst.traverse("levelOrder")).toEqual([
+        11,
+        6,
+        19,
+        4,
+        8,
+        17,
+        43,
+        5,
+        10,
+        31,
+        49
+      ]);
     });
   });
 });
