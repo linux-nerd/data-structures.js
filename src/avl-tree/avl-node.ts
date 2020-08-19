@@ -4,10 +4,13 @@ export abstract class AVLNode<T> {
   private leftHeight: number;
   private rightHeight: number;
   private value: number;
+  private parent: AVLNode<T>
+
 
   constructor(value: number) {
     this.left = null;
     this.right = null;
+    this.parent = null;
     this.leftHeight = 0;
     this.rightHeight = 0;
     this.value = value;
@@ -19,6 +22,20 @@ export abstract class AVLNode<T> {
 
   public nodeHeight(): number {
     return (this.rightHeight > this.leftHeight) ? this.rightHeight : this.leftHeight;
+  }
+
+  public setNodeHeights(): void {
+    if (this.right == null) {
+      this.rightHeight = 0;
+    } else {
+      this.rightHeight = this.right.nodeHeight() + 1;
+    }
+
+    if (this.left == null) {
+      this.leftHeight = 0;
+    } else {
+      this.leftHeight = this.left.nodeHeight() + 1;
+    }
   }
 
   public abstract compareTo(o: AVLNode<number>): number
@@ -59,6 +76,14 @@ export abstract class AVLNode<T> {
   public getValue(): number {
     return this.value;
   }
+  public getParent(): AVLNode<T> {
+    return this.parent;
+  }
+
+  public setParent(parent: AVLNode<T>): void {
+    this.parent = parent;
+  }
+
   /* #endregion */
 
 }
