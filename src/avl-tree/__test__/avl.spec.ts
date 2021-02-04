@@ -49,5 +49,10 @@ describe("AVL Tree", () => {
       expect(right.getValue()).toBe(9);
       expect(avlTree.getRoot().nodeHeight()).toBe(1);
     });
+
+    it("should not add node with the same value", () => {
+      const isNodeInsterted = avlTree.insert(new Int(9));
+      expect(isNodeInsterted).toBeFalsy();
+    })
   })
 })
