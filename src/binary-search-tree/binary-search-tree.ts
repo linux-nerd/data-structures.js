@@ -67,10 +67,7 @@ const preOrderTraversal = Symbol("preorder");
 const postOrderTraversal = Symbol("postorder");
 const levelOrderTraversal = Symbol("levelorder");
 
-/**
- * Private properties name
- */
-const length = Symbol("length");
+
 
 /**
  * Binary Search Tree
@@ -83,8 +80,10 @@ export class BST<T> {
     this.root = null;
     this.length = 0;
   }
-
-  get len() {
+  set len(l) {
+    this.length = l;
+  }
+  get len(): number {
     return this.length;
   }
 

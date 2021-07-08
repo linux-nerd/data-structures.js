@@ -23,6 +23,7 @@
     "prepare": "npm run build & npm run dev",
     "publish:npm": "npm publish --access public",
     "test:jest": "jest",
+    "test:jest:watch": "jest --watch",
     "lint": "eslint src/ --ext .ts"
   },
   "jest": {
@@ -44,7 +45,8 @@
     "es6",
     "queue",
     "graph",
-    "binary search tree"
+    "binary search tree",
+    "avl tree"
   ],
   "author": {
     "name": "Abhishek Prakash",

@@ -50,6 +50,7 @@ Trigger production build
 Data structures covered so far -
 
 - [Binary Search Tree](#binary-search-tree)
+- [AVL Tree](#avl-tree) - In Progress
 - [Graph](#graph)
 - [Queue](#queue)
 - [Linked List](#link-list)
@@ -130,6 +131,8 @@ Delete elements from binary search tree
 bst.delete(10);
 bst.delete(20);
 ```
+# <a name="avl-tree"></a>AVL Tree
+AVL Tree Docs.
 
 # <a name="graph"></a> Graph
 
