@@ -62,12 +62,12 @@
     "@webpack-cli/migrate": "^0.1.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^26.2.2",
-    "babel-loader": "^7.1.5",
+    "babel-loader": "^9.1.0",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-polyfill": "^6.26.0",
     "coveralls": "^3.0.2",
     "eslint": "^7.6.0",
-    "eslint-loader": "^2.1.0",
+    "eslint-loader": "^4.0.2",
     "eslint-plugin-import": "^2.13.0",
     "istanbul": "^0.4.5",
     "jest": "^26.2.2",
@@ -77,9 +77,9 @@
     "tslint": "^5.11.0",
     "typescript": "^3.9.7",
     "uglifyjs-webpack-plugin": "^0.4.6",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "webpack": "^4.16.4"
+    "webpack": "^5.75.0"
   }
 }
